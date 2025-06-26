@@ -1,20 +1,8 @@
-// Función para generar hash SHA-256
-async function generateSHA256Hash(text) {
-	const encoder = new TextEncoder();
-	const data = encoder.encode(text);
-	const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-	const hashArray = Array.from(new Uint8Array(hashBuffer));
-	const hashHex = hashArray
-		.map((b) => b.toString(16).padStart(2, "0"))
-		.join("");
-	return hashHex;
-}
-
 // Función para generar contraseña específica del sitio
 async function generateSitePassword(masterPassword, domain, length = 16) {
 	if (!masterPassword || !domain) return "";
 
-	const salt = new TextEncoder().encode(domain + ":" + length);
+	const salt = new TextEncoder().encode(`${domain}:${length}`);
 	const password = new TextEncoder().encode(masterPassword);
 
 	// Importar la contraseña como clave
@@ -29,7 +17,7 @@ async function generateSitePassword(masterPassword, domain, length = 16) {
 			hash: "SHA-256",
 		},
 		key,
-		256 // 32 bytes
+		256, // 32 bytes
 	);
 
 	// Convertir a hex
@@ -90,7 +78,7 @@ async function sendPassword() {
 				const sitePassword = await generateSitePassword(
 					universalPassword,
 					domain,
-					lengthPassword
+					lengthPassword,
 				);
 				console.log(sitePassword);
 				browser.tabs
@@ -114,14 +102,14 @@ browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
 		try {
 			// Obtener el dominio desde la URL del tab
 			let domain = "";
-			if (sender && sender.tab && sender.tab.url) {
+			if (sender?.tab?.url) {
 				domain = new URL(sender.tab.url).hostname;
 			}
 
 			const sitePassword = await generateSitePassword(
 				universalPassword,
 				domain,
-				lengthPassword
+				lengthPassword,
 			);
 			browser.tabs
 				.sendMessage(sender.tab.id, {

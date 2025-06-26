@@ -1,12 +1,11 @@
 // Inicializar localización
 document.addEventListener("DOMContentLoaded", () => {
-	// Localizar elementos con data-i18n
-	localizeHtml();
-
 	// Localizar placeholder específicamente
 	const inputField = document.getElementById("inputField");
 	if (inputField) {
-		inputField.placeholder = getMessage("universalPasswordPlaceholder");
+		inputField.placeholder = browser.i18n.getMessage(
+			"universalPasswordPlaceholder",
+		);
 	}
 
 	// Inicializar funcionalidad del botón de toggle password
@@ -22,7 +21,7 @@ function initTogglePassword() {
 
 	if (toggleButton && passwordInput && eyeIcon && eyeOffIcon) {
 		// Localizar el título del botón
-		toggleButton.title = getMessage("togglePasswordVisibility");
+		toggleButton.title = browser.i18n.getMessage("togglePasswordVisibility");
 
 		toggleButton.addEventListener("click", () => {
 			if (passwordInput.type === "password") {
@@ -51,7 +50,6 @@ let lengthPassword = 16;
 browser.storage.session
 	.get(["universalPassword", "lengthPassword"])
 	.then((result) => {
-		console.log("Valores cargados desde el storage:", result);
 		if (result.universalPassword) {
 			inputField.value = result.universalPassword;
 			universalPassword = result.universalPassword;

@@ -6,7 +6,7 @@ function isAuthForm(form) {
 }
 
 // Escuchar mensajes del popup
-browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 	if (message.action === "updatePassword_Hashsey") {
 		handlePasswordUpdate(message.password);
 		sendResponse({ success: true });
@@ -19,11 +19,11 @@ function requestPassword() {
 			data: {},
 		})
 		.then((response) => {
-			if (response && response.success) {
+			if (response?.success) {
 				handlePasswordUpdate(response.password);
 			}
 		})
-		.catch((error) => {});
+		.catch(() => {});
 }
 let password = "";
 requestPassword();
@@ -57,7 +57,7 @@ function createFloatingMenu(passwordInput) {
 
 	// Create title
 	const title = document.createElement("div");
-	title.textContent = getMessage("passwordManagerTitle");
+	title.textContent = browser.i18n.getMessage("passwordManagerTitle");
 	title.style.cssText = `
 		color: white;
 		margin: 0 0 15px 0;
@@ -68,7 +68,7 @@ function createFloatingMenu(passwordInput) {
 
 	// Create fill button
 	const fillButton = document.createElement("button");
-	fillButton.textContent = getMessage("fillPasswordButton");
+	fillButton.textContent = browser.i18n.getMessage("fillPasswordButton");
 	fillButton.style.cssText = `
 		background: linear-gradient(45deg, #4CAF50, #45a049);
 		color: white;
@@ -87,7 +87,7 @@ function createFloatingMenu(passwordInput) {
 
 	// Create close button
 	const closeButton = document.createElement("button");
-	closeButton.textContent = getMessage("closeButton");
+	closeButton.textContent = browser.i18n.getMessage("closeButton");
 	closeButton.style.cssText = `
 		background: linear-gradient(45deg, #f44336, #d32f2f);
 		color: white;
@@ -120,7 +120,7 @@ function createFloatingMenu(passwordInput) {
 		// Check if password is empty or not configured
 		if (!password || password.trim() === "") {
 			hideFloatingMenu();
-			showErrorMessage(passwordInput, "passwordNotConfiguredError");
+			showErrorMessage("passwordNotConfiguredError");
 			return;
 		}
 
@@ -154,7 +154,7 @@ function createFloatingMenu(passwordInput) {
 			(e) => {
 				// Check if the click is on the floating menu, password input, or hashsey button
 				const hashseyButton = passwordInput.parentNode?.querySelector(
-					'button[type="button"]'
+					'button[type="button"]',
 				);
 				if (
 					!floatingMenu.contains(e.target) &&
@@ -165,7 +165,7 @@ function createFloatingMenu(passwordInput) {
 					hideFloatingMenu();
 				}
 			},
-			{ once: true }
+			{ once: true },
 		);
 
 		// Close menu with Escape key
@@ -188,10 +188,10 @@ function createFloatingMenu(passwordInput) {
 	passwordInput.hashseyHideFloatingMenu = hideFloatingMenu;
 }
 
-function showSuccessMessage(passwordInput) {
+function showSuccessMessage() {
 	// Create success message
 	const successMsg = document.createElement("div");
-	successMsg.textContent = getMessage("passwordFilledSuccess");
+	successMsg.textContent = browser.i18n.getMessage("passwordFilledSuccess");
 	successMsg.style.cssText = `
 		position: fixed;
 		top: 20px;
@@ -226,10 +226,10 @@ function showSuccessMessage(passwordInput) {
 	}, 3000);
 }
 
-function showErrorMessage(passwordInput, messageKey) {
+function showErrorMessage(messageKey) {
 	// Create error message
 	const errorMsg = document.createElement("div");
-	errorMsg.textContent = getMessage(messageKey);
+	errorMsg.textContent = browser.i18n.getMessage(messageKey);
 	errorMsg.style.cssText = `
 		position: fixed;
 		top: 20px;
@@ -358,7 +358,7 @@ const forms = document.querySelectorAll("form");
 const authForms = Array.from(forms).filter(isAuthForm);
 
 // Example: log the login forms to the console
-authForms.forEach((form, idx) => {
+authForms.forEach((form, _idx) => {
 	const passwordInput = form.querySelector('input[type="password"]');
 	if (passwordInput) {
 		setupPasswordField(passwordInput);
@@ -376,7 +376,7 @@ const observer = new MutationObserver((mutations) => {
 				passwordInputs.forEach(setupPasswordField);
 
 				// Check if the node itself is a password input
-				if (node.matches && node.matches('input[type="password"]')) {
+				if (node.matches?.('input[type="password"]')) {
 					setupPasswordField(node);
 				}
 			}
