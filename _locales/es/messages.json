@@ -1,0 +1,50 @@
+{
+	"extName": {
+		"message": "Hashsey",
+		"description": "Nombre de la extensión"
+	},
+	"extDescription": {
+		"message": "Gestor de contraseñas sin almacenar contraseñas.",
+		"description": "Descripción de la extensión"
+	},
+	"extTitle": {
+		"message": "Hashsey",
+		"description": "Título de la extensión"
+	},
+	"universalPasswordLabel": {
+		"message": "Contraseña Universal:",
+		"description": "Etiqueta para el campo de contraseña universal"
+	},
+	"universalPasswordPlaceholder": {
+		"message": "Introduce la contraseña...",
+		"description": "Placeholder para el campo de contraseña universal"
+	},
+	"togglePasswordVisibility": {
+		"message": "Mostrar/ocultar contraseña",
+		"description": "Tooltip para el botón de alternar visibilidad de contraseña"
+	},
+	"lengthLabel": {
+		"message": "Longitud:",
+		"description": "Etiqueta para el campo de longitud"
+	},
+	"passwordManagerTitle": {
+		"message": "🔐 Hashsey Gestor de Contraseñas",
+		"description": "Título del menú flotante"
+	},
+	"fillPasswordButton": {
+		"message": "🔑 Rellenar Contraseña",
+		"description": "Texto del botón para rellenar contraseña"
+	},
+	"closeButton": {
+		"message": "❌ Cerrar",
+		"description": "Texto del botón para cerrar"
+	},
+	"passwordFilledSuccess": {
+		"message": "✅ Contraseña rellenada exitosamente",
+		"description": "Mensaje de éxito al rellenar contraseña"
+	},
+	"passwordNotConfiguredError": {
+		"message": "❌ Debes configurar la contraseña universal primero",
+		"description": "Mensaje de error cuando la contraseña universal no está configurada"
+	}
+}

@@ -1,0 +1,38 @@
+# Firefox extension artifacts
+web-ext-artifacts/
+*.zip
+*.xpi
+
+# Node.js dependencies (if using npm/yarn)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Development and build files
+.DS_Store
+.vscode/
+.idea/
+*.log
+*.tmp
+*.temp
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# Distribution/build directories
+dist/
+build/
+out/
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini

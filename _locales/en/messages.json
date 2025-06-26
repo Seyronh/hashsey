@@ -1,0 +1,50 @@
+{
+	"extName": {
+		"message": "Hashsey",
+		"description": "Extension name"
+	},
+	"extDescription": {
+		"message": "Password manager without storing passwords.",
+		"description": "Extension description"
+	},
+	"extTitle": {
+		"message": "Hashsey",
+		"description": "Extension title"
+	},
+	"universalPasswordLabel": {
+		"message": "Universal Password:",
+		"description": "Label for universal password field"
+	},
+	"universalPasswordPlaceholder": {
+		"message": "Enter your password...",
+		"description": "Placeholder for universal password field"
+	},
+	"togglePasswordVisibility": {
+		"message": "Show/hide password",
+		"description": "Tooltip for password visibility toggle button"
+	},
+	"lengthLabel": {
+		"message": "Length:",
+		"description": "Label for length field"
+	},
+	"passwordManagerTitle": {
+		"message": "🔐 Hashsey Password Manager",
+		"description": "Floating menu title"
+	},
+	"fillPasswordButton": {
+		"message": "🔑 Fill Password",
+		"description": "Fill password button text"
+	},
+	"closeButton": {
+		"message": "❌ Close",
+		"description": "Close button text"
+	},
+	"passwordFilledSuccess": {
+		"message": "✅ Password filled successfully",
+		"description": "Success message when password is filled"
+	},
+	"passwordNotConfiguredError": {
+		"message": "❌ You must configure the universal password first",
+		"description": "Error message when universal password is not configured"
+	}
+}
