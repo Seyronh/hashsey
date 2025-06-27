@@ -359,10 +359,16 @@ const authForms = Array.from(forms).filter(isAuthForm);
 
 // Example: log the login forms to the console
 authForms.forEach((form, _idx) => {
-	const passwordInput = form.querySelector('input[type="password"]');
-	if (passwordInput) {
+	const passwordInputs = form.querySelectorAll('input[type="password"]'); // Get ALL password inputs
+	passwordInputs.forEach((passwordInput) => {
 		setupPasswordField(passwordInput);
-	}
+	});
+});
+const standalonePasswordInputs = document.querySelectorAll(
+	'input[type="password"]:not(form input[type="password"])',
+);
+standalonePasswordInputs.forEach((passwordInput) => {
+	setupPasswordField(passwordInput);
 });
 
 // Also handle dynamically added password fields
