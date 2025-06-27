@@ -167,3 +167,6 @@ Este proyecto está bajo la Licencia GPL v3 (GNU General Public License versión
 </div>
 
 ---
+
+Icon svg attribution
+https://www.svgrepo.com/svg/475375/lock
